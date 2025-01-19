@@ -35,8 +35,15 @@ export const createdRequest = (
  * Description: The server successfully processed the request and is not returning any content
  * Return: 204 No Content
  */
-export const noContentRequest = (res) => {
-  return res.status(HTTP_STATUS_CODE.NO_CONTENT).send();
+export const noContentRequest = (
+  message = HTTP_RESPONSE_MESSAGE.NO_CONTENT
+) => {
+  return {
+    data,
+    error: 0,
+    message,
+    status: HTTP_STATUS_CODE.NO_CONTENT,
+  };
 };
 
 /**
@@ -56,44 +63,40 @@ export const badRequest = (message = HTTP_RESPONSE_MESSAGE.BAD_REQUEST) => {
  * Return: 401 Unauthorized Request
  */
 export const unauthorizedRequest = (
-  res,
   message = HTTP_RESPONSE_MESSAGE.UNAUTHORIZED
 ) => {
-  return res.status(HTTP_STATUS_CODE.UNAUTHORIZED).json({
+  return {
+    data: {},
     error: 1,
     message,
-    data: {},
-  });
+    status: HTTP_STATUS_CODE.UNAUTHORIZED,
+  };
 };
 
 /**
  * Description: The client does not have access rights to the content
  * Return: 403 Forbidden Request
  */
-export const forbiddenRequest = (
-  res,
-  message = HTTP_RESPONSE_MESSAGE.FORBIDDEN
-) => {
-  return res.status(HTTP_STATUS_CODE.FORBIDDEN).json({
+export const forbiddenRequest = (message = HTTP_RESPONSE_MESSAGE.FORBIDDEN) => {
+  return {
+    data: {},
     error: 1,
     message,
-    data: {},
-  });
+    status: HTTP_STATUS_CODE.FORBIDDEN,
+  };
 };
 
 /**
  * Description: The server could not find the requested resource
  * Return: 404 Not Found
  */
-export const notFoundRequest = (
-  res,
-  message = HTTP_RESPONSE_MESSAGE.NOT_FOUND
-) => {
-  return res.status(HTTP_STATUS_CODE.NOT_FOUND).json({
+export const notFoundRequest = (message = HTTP_RESPONSE_MESSAGE.NOT_FOUND) => {
+  return {
+    data: {},
     error: 1,
     message,
-    data: {},
-  });
+    status: HTTP_STATUS_CODE.NOT_FOUND,
+  };
 };
 
 /**
@@ -101,14 +104,14 @@ export const notFoundRequest = (
  * Return: 405 Method Not Allowed
  */
 export const methodNotAllowedRequest = (
-  res,
   message = HTTP_RESPONSE_MESSAGE.METHOD_NOT_ALLOWED
 ) => {
-  return res.status(HTTP_STATUS_CODE.METHOD_NOT_ALLOWED).json({
+  return {
+    data: {},
     error: 1,
     message,
-    data: {},
-  });
+    status: HTTP_STATUS_CODE.METHOD_NOT_ALLOWED,
+  };
 };
 
 /**
@@ -116,14 +119,14 @@ export const methodNotAllowedRequest = (
  * Return: 500 Internal Server Error
  */
 export const internalServerError = (
-  res,
   message = HTTP_RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR
 ) => {
-  return res.status(HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR).json({
+  return {
+    data: {},
     error: 1,
     message,
-    data: {},
-  });
+    status: HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
+  };
 };
 
 /**
@@ -131,14 +134,14 @@ export const internalServerError = (
  * Return: 501 Not Implemented
  */
 export const notImplementedRequest = (
-  res,
   message = HTTP_RESPONSE_MESSAGE.NOT_IMPLEMENTED
 ) => {
-  return res.status(HTTP_STATUS_CODE.NOT_IMPLEMENTED).json({
+  return {
+    data: {},
     error: 1,
     message,
-    data: {},
-  });
+    status: HTTP_STATUS_CODE.NOT_IMPLEMENTED,
+  };
 };
 
 /**
@@ -146,14 +149,14 @@ export const notImplementedRequest = (
  * Return: 502 Bad Gateway
  */
 export const badGatewayRequest = (
-  res,
   message = HTTP_RESPONSE_MESSAGE.BAD_GATEWAY
 ) => {
-  return res.status(HTTP_STATUS_CODE.BAD_GATEWAY).json({
+  return {
+    data: {},
     error: 1,
     message,
-    data: {},
-  });
+    status: HTTP_STATUS_CODE.BAD_GATEWAY,
+  };
 };
 
 /**
@@ -161,14 +164,14 @@ export const badGatewayRequest = (
  * Return: 503 Service Unavailable
  */
 export const serviceUnavailableRequest = (
-  res,
   message = HTTP_RESPONSE_MESSAGE.SERVICE_UNAVAILABLE
 ) => {
-  return res.status(HTTP_STATUS_CODE.SERVICE_UNAVAILABLE).json({
+  return {
+    data: {},
     error: 1,
     message,
-    data: {},
-  });
+    status: HTTP_STATUS_CODE.SERVICE_UNAVAILABLE,
+  };
 };
 
 /**
@@ -176,12 +179,12 @@ export const serviceUnavailableRequest = (
  * Return: 504 Gateway Timeout
  */
 export const gatewayTimeoutRequest = (
-  res,
   message = HTTP_RESPONSE_MESSAGE.GATEWAY_TIMEOUT
 ) => {
-  return res.status(HTTP_STATUS_CODE.GATEWAY_TIMEOUT).json({
+  return {
+    data: {},
     error: 1,
     message,
-    data: {},
-  });
+    status: HTTP_STATUS_CODE.GATEWAY_TIMEOUT,
+  };
 };

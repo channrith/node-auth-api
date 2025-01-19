@@ -13,8 +13,8 @@ app.use(express.json({ limit: '4mb' }), route);
 app.use(cors());
 
 app.use('/', serverStatusRoute);
-app.use('/', getMyuserByIdRoute);
-app.use('/', signinRoute);
-app.use('/', signupRoute);
+app.use('/api', getMyuserByIdRoute);
+app.use('/api', signinRoute);
+app.use('/api', signupRoute);
 
 export default app;

@@ -11,14 +11,25 @@ router.get('/status', async (_, res) => {
     const mongooseStatus =
       mongoose.connection.readyState === 1 ? 'healthy' : 'unhealthy';
 
-    return successRequest(res, {
-      status: mongooseStatus,
-      connection: {
-        database: mongooseStatus === 'healthy' ? 'connected' : 'disconnected',
-      },
+      const { data, error, message, status } = successRequest({
+        status: mongooseStatus,
+        connection: {
+          database: mongooseStatus === 'healthy' ? 'connected' : 'disconnected',
+        },
+      });
+
+      return res.status(status).json({
+        error,
+        message,
+        data,
+      });
+  } catch (err) {
+    const { data, error, message, status } = internalServerError(err.message);
+    return res.status(status).json({
+      error,
+      message,
+      data,
     });
-  } catch (error) {
-    return internalServerError(res, 'Database connection failed');
   }
 });
 

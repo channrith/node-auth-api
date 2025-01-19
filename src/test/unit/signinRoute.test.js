@@ -5,7 +5,7 @@ import app from '../../app';
 describe('Myuser Action Tests', () => {
   describe('Signin Action', () => {
     it('should return an error if username is missing', async () => {
-      const response = await request(app).post('/signin').send({
+      const response = await request(app).post('/api/signin').send({
         password: 'password123',
       });
 
@@ -15,7 +15,7 @@ describe('Myuser Action Tests', () => {
     });
 
     it('should return an error if password is missing', async () => {
-      const response = await request(app).post('/signin').send({
+      const response = await request(app).post('/api/signin').send({
         username: 'user123',
       });
 
