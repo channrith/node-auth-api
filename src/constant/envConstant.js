@@ -5,6 +5,7 @@ if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'ci_test') {
 }
 
 const {
+  NODE_ENV,
   APP_PORT,
   DB_CONNECTION_URI,
   DB_PASSWORD,
@@ -15,6 +16,7 @@ const {
 } = process.env;
 
 const ENV = {
+  NODE_ENV,
   APP_PORT: parseInt(APP_PORT, 10) || 3000,
   DB_CONNECTION_URI,
   DB_PASSWORD,

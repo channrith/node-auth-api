@@ -11,13 +11,13 @@ const connectDB = async () => {
     console.log('Establishing connection to DB: ', ENV.DB_CONNECTION_URI);
 
     if (!isMongooseEventRegistered) {
-      mongoose.connection.on('error', () => {
+      mongoose.connection.on('error', async () => {
         if (
           ENV.NODE_ENV !== ENVIRONMENT.TEST &&
           ENV.NODE_ENV !== ENVIRONMENT.CI_TEST
         ) {
           console.log('mongodb connection error event');
-          mongoose.disconnect();
+          await mongoose.disconnect();
         }
       });
 
@@ -36,18 +36,15 @@ const connectDB = async () => {
           ENV.NODE_ENV !== ENVIRONMENT.TEST &&
           ENV.NODE_ENV !== ENVIRONMENT.CI_TEST
         ) {
-          setTimeout(() => {
-            connectDB();
+          setTimeout(async () => {
+            await connectDB();
           }, ENV.RETRY_INTERVAL);
         }
       });
       isMongooseEventRegistered = true;
     }
 
-    await mongoose.connect(DB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(DB_URI);
 
     console.log('mongodb connected');
   } catch (error) {

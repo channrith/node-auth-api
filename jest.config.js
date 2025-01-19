@@ -1,0 +1,21 @@
+module.exports = {
+  testEnvironment: 'node',
+  testRegex: '(/test/.*|(\\.|/)(test|spec))\\.(js?|ts?)$',
+  moduleFileExtensions: ['ts', 'js', 'json', 'node'],
+  collectCoverage: true,
+  testPathIgnorePatterns: [
+    '/dist/',
+    '/docker/',
+    '/build/',
+    '/lib/',
+    '/node_modules/',
+    '/src/utils/',
+    '/src/consumers/',
+  ],
+  coveragePathIgnorePatterns: ['/src/consumers/'],
+  verbose: true,
+  setupFilesAfterEnv: ['./jest.setup.js'],
+  globalSetup: './jest.global.setup.js',
+  globalTeardown: './jest.teardown.js',
+  testTimeout: 30000,
+};

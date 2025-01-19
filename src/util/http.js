@@ -1,19 +1,18 @@
 import { HTTP_STATUS_CODE, HTTP_RESPONSE_MESSAGE } from '../constant';
 
 /**
- * Description: The request succeeded
- * Return: 200 OK
+ * The request succeeded
  */
 export const successRequest = (
-  res,
   data = {},
   message = HTTP_RESPONSE_MESSAGE.OK
 ) => {
-  return res.status(HTTP_STATUS_CODE.OK).json({
+  return {
+    data,
     error: 0,
     message,
-    data,
-  });
+    status: HTTP_STATUS_CODE.OK,
+  };
 };
 
 /**
@@ -41,18 +40,15 @@ export const noContentRequest = (res) => {
 };
 
 /**
- * Description: The server could not understand the request due to invalid syntax
- * Return: 400 Bad Request
+ * The server could not understand the request due to invalid syntax
  */
-export const badRequest = (
-  res,
-  message = HTTP_RESPONSE_MESSAGE.BAD_REQUEST
-) => {
-  return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json({
+export const badRequest = (message = HTTP_RESPONSE_MESSAGE.BAD_REQUEST) => {
+  return {
+    data: {},
     error: 1,
     message,
-    data: {},
-  });
+    status: HTTP_STATUS_CODE.BAD_REQUEST,
+  };
 };
 
 /**

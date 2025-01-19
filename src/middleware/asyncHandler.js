@@ -55,11 +55,11 @@ const asyncHandler = (fn) => async (req, res, next) => {
     const message = errorHandler(error);
 
     if (error.name === 'ValidationError' || error.name === 'CastError') {
-      badRequest(res, message); // 400 Bad Request
+      badRequest(res, message);
     } else if (error.name === 'MongoServerError' || error.code) {
-      badRequest(res, message); // 400 for database-related issues
+      badRequest(res, message);
     } else {
-      internalServerError(res, message); // 500 Internal Server Error
+      internalServerError(res, message);
     }
   }
 };

@@ -1,4 +1,4 @@
-import { body } from 'express-validator';
+import { body, validationResult } from 'express-validator';
 import { badRequest } from './http';
 
 export const loginValidator = [
@@ -26,13 +26,16 @@ export const validationErrorFormat = (errors) => {
   return { field, message };
 };
 
-const { validationResult } = require('express-validator');
-
 export const runValidation = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    const { message } = validationErrorFormat(errors);
-    return badRequest(res, message);
+    const { message: errorMessage } = validationErrorFormat(errors);
+    const { data, error, message, status } = badRequest(errorMessage);
+    return res.status(status).json({
+      error,
+      message,
+      data,
+    });
   }
   return next();
 };
