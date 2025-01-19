@@ -6,7 +6,7 @@ import { ENV } from '../constant';
 const router = express.Router();
 
 router.get(
-  '/user/:id',
+  '/users/:id',
   expressJwt({
     secret: ENV.JWT_SECRET,
     algorithms: ['HS256'],
