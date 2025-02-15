@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import {
-  getMyuserByIdRoute,
+  verifyTokenRoute,
   serverStatusRoute,
   signinRoute,
   signupRoute,
@@ -13,7 +13,7 @@ app.use(express.json({ limit: '4mb' }), route);
 app.use(cors());
 
 app.use('/', serverStatusRoute);
-app.use('/api', getMyuserByIdRoute);
+app.use('/api', verifyTokenRoute);
 app.use('/api', signinRoute);
 app.use('/api', signupRoute);
 
